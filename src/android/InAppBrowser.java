@@ -51,7 +51,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-
+import android.graphics.Color;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.Config;
 import org.apache.cordova.CordovaArgs;
@@ -406,7 +406,7 @@ public class InAppBrowser extends CordovaPlugin {
             intent.putExtra(Browser.EXTRA_APPLICATION_ID, cordova.getActivity().getPackageName());
             this.cordova.getActivity().startActivity(intent);
             return "";
-        // not catching FileUriExposedException explicitly because buildtools<24 doesn't know about it
+            // not catching FileUriExposedException explicitly because buildtools<24 doesn't know about it
         } catch (java.lang.RuntimeException e) {
             LOG.d(LOG_TAG, "InAppBrowser: Error loading url "+url+":"+ e.toString());
             return e.toString();
@@ -568,7 +568,7 @@ public class InAppBrowser extends CordovaPlugin {
             }
             Boolean wideViewPort = features.get(USER_WIDE_VIEW_PORT);
             if (wideViewPort != null ) {
-		            useWideViewPort = wideViewPort.booleanValue();
+                useWideViewPort = wideViewPort.booleanValue();
             }
         }
 
@@ -583,8 +583,8 @@ public class InAppBrowser extends CordovaPlugin {
              */
             private int dpToPixels(int dipValue) {
                 int value = (int) TypedValue.applyDimension( TypedValue.COMPLEX_UNIT_DIP,
-                                                            (float) dipValue,
-                                                            cordova.getActivity().getResources().getDisplayMetrics()
+                        (float) dipValue,
+                        cordova.getActivity().getResources().getDisplayMetrics()
                 );
 
                 return value;
@@ -612,8 +612,9 @@ public class InAppBrowser extends CordovaPlugin {
                 // Toolbar layout
                 RelativeLayout toolbar = new RelativeLayout(cordova.getActivity());
                 //Please, no more black!
-                toolbar.setBackgroundColor(android.graphics.Color.LTGRAY);
-                toolbar.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, this.dpToPixels(44)));
+                int colorCode = Color.parseColor("#0066B3") ;
+                toolbar.setBackgroundColor(colorCode);
+                toolbar.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, this.dpToPixels(50)));
                 toolbar.setPadding(this.dpToPixels(2), this.dpToPixels(2), this.dpToPixels(2), this.dpToPixels(2));
                 toolbar.setHorizontalGravity(Gravity.LEFT);
                 toolbar.setVerticalGravity(Gravity.TOP);
@@ -692,8 +693,8 @@ public class InAppBrowser extends CordovaPlugin {
                     public boolean onKey(View v, int keyCode, KeyEvent event) {
                         // If the event is a key-down event on the "enter" button
                         if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                          navigate(edittext.getText().toString());
-                          return true;
+                            navigate(edittext.getText().toString());
+                            return true;
                         }
                         return false;
                     }
@@ -822,7 +823,7 @@ public class InAppBrowser extends CordovaPlugin {
 
                 // Add the views to our toolbar
                 toolbar.addView(actionButtonContainer);
-                toolbar.addView(edittext);
+                //toolbar.addView(edittext);
                 toolbar.addView(close);
 
                 // Don't add the toolbar if its been disabled
@@ -1022,7 +1023,7 @@ public class InAppBrowser extends CordovaPlugin {
             // Update the UI if we haven't already
             if (!newloc.equals(edittext.getText().toString())) {
                 edittext.setText(newloc);
-             }
+            }
 
             try {
                 JSONObject obj = new JSONObject();
