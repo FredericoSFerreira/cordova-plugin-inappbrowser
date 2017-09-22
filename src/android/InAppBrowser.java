@@ -636,7 +636,7 @@ public class InAppBrowser extends CordovaPlugin {
                 back.setContentDescription("Back Button");
                 back.setId(Integer.valueOf(2));
                 Resources activityRes = cordova.getActivity().getResources();
-                int backResId = activityRes.getIdentifier("ic_action_previous_item", "drawable", cordova.getActivity().getPackageName());
+                int backResId = activityRes.getIdentifier("btn_img_back", "drawable", cordova.getActivity().getPackageName());
                 Drawable backIcon = activityRes.getDrawable(backResId);
                 if (Build.VERSION.SDK_INT >= 16)
                     back.setBackground(null);
