@@ -458,6 +458,8 @@ public class InAppBrowser extends CordovaPlugin {
     public void goBack() {
         if (this.inAppWebView.canGoBack()) {
             this.inAppWebView.goBack();
+        } else {
+            closeDialog();
         }
     }
 
@@ -652,14 +654,14 @@ public class InAppBrowser extends CordovaPlugin {
                     }
                 });
 
-                // Forward button
+                //Botão Home
                 ImageButton forward = new ImageButton(cordova.getActivity());
                 RelativeLayout.LayoutParams forwardLayoutParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
                 forwardLayoutParams.addRule(RelativeLayout.RIGHT_OF, 2);
                 forward.setLayoutParams(forwardLayoutParams);
                 forward.setContentDescription("Forward Button");
                 forward.setId(Integer.valueOf(3));
-                int fwdResId = activityRes.getIdentifier("ic_action_next_item", "drawable", cordova.getActivity().getPackageName());
+                int fwdResId = activityRes.getIdentifier("btn-img-home", "drawable", cordova.getActivity().getPackageName());
                 Drawable fwdIcon = activityRes.getDrawable(fwdResId);
                 if (Build.VERSION.SDK_INT >= 16)
                     forward.setBackground(null);
@@ -667,13 +669,19 @@ public class InAppBrowser extends CordovaPlugin {
                     forward.setBackgroundDrawable(null);
                 forward.setImageDrawable(fwdIcon);
                 forward.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                forward.setPadding(0, this.dpToPixels(10), 0, this.dpToPixels(10));
+                forward.setPadding(30, this.dpToPixels(10), 0, this.dpToPixels(10));
                 if (Build.VERSION.SDK_INT >= 16)
                     forward.getAdjustViewBounds();
 
+//                forward.setOnClickListener(new View.OnClickListener() {
+//                    public void onClick(View v) {
+//                        goForward();
+//                    }
+//                });
+
                 forward.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        goForward();
+                        closeDialog();
                     }
                 });
 
@@ -700,14 +708,14 @@ public class InAppBrowser extends CordovaPlugin {
                     }
                 });
 
-                // Close/Done button
+                //Botão Voltar
                 ImageButton close = new ImageButton(cordova.getActivity());
                 RelativeLayout.LayoutParams closeLayoutParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
                 closeLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                 close.setLayoutParams(closeLayoutParams);
                 close.setContentDescription("Close Button");
                 close.setId(Integer.valueOf(5));
-                int closeResId = activityRes.getIdentifier("ic_action_remove", "drawable", cordova.getActivity().getPackageName());
+                int closeResId = activityRes.getIdentifier("btn-img-back", "drawable", cordova.getActivity().getPackageName());
                 Drawable closeIcon = activityRes.getDrawable(closeResId);
                 if (Build.VERSION.SDK_INT >= 16)
                     close.setBackground(null);
@@ -721,9 +729,15 @@ public class InAppBrowser extends CordovaPlugin {
 
                 close.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        closeDialog();
+                        goBack();
                     }
                 });
+
+//                close.setOnClickListener(new View.OnClickListener() {
+//                    public void onClick(View v) {
+//                        closeDialog();
+//                    }
+//                });
 
                 // WebView
                 inAppWebView = new WebView(cordova.getActivity());
@@ -818,12 +832,12 @@ public class InAppBrowser extends CordovaPlugin {
                 inAppWebView.requestFocusFromTouch();
 
                 // Add the back and forward buttons to our action button container layout
-                actionButtonContainer.addView(back);
+                //actionButtonContainer.addView(back);
                 actionButtonContainer.addView(forward);
 
                 // Add the views to our toolbar
                 toolbar.addView(actionButtonContainer);
-                //toolbar.addView(edittext);
+//                toolbar.addView(edittext);
                 toolbar.addView(close);
 
                 // Don't add the toolbar if its been disabled
