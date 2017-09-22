@@ -48,6 +48,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.graphics.Typeface;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -718,7 +719,7 @@ public class InAppBrowser extends CordovaPlugin {
                 textView.setLayoutParams(texViewtLayoutParams);
                 textView.setId(Integer.valueOf(4));
                 textView.setSingleLine(true);
-                Typeface type = Typeface.createFromAsset(getAssets(),"fonts/Roboto-Regular.ttf");
+                Typeface type = Typeface.createFromAsset(cordova.getActivity().getAssets(),"fonts/Roboto-Regular.ttf");
                 textView.setTypeface(type);
                 textView.setPadding(240, this.dpToPixels(13), 0, this.dpToPixels(10));
                 textView.setTextColor(Color.parseColor("#FFFFFF"));
