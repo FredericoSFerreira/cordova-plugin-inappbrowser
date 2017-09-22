@@ -47,6 +47,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -95,6 +96,7 @@ public class InAppBrowser extends CordovaPlugin {
     private InAppBrowserDialog dialog;
     private WebView inAppWebView;
     private EditText edittext;
+    private TextView textView;
     private CallbackContext callbackContext;
     private boolean showLocationBar = true;
     private boolean showZoomControls = true;
@@ -655,23 +657,23 @@ public class InAppBrowser extends CordovaPlugin {
                 });
 
                 //Botão Home
-                ImageButton forward = new ImageButton(cordova.getActivity());
-                RelativeLayout.LayoutParams forwardLayoutParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
-                forwardLayoutParams.addRule(RelativeLayout.RIGHT_OF, 2);
-                forward.setLayoutParams(forwardLayoutParams);
-                forward.setContentDescription("Forward Button");
-                forward.setId(Integer.valueOf(3));
+                ImageButton home = new ImageButton(cordova.getActivity());
+                RelativeLayout.LayoutParams homeLayoutParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+                homeLayoutParams.addRule(RelativeLayout.RIGHT_OF, 2);
+                home.setLayoutParams(homeLayoutParams);
+                home.setContentDescription("home Button");
+                home.setId(Integer.valueOf(3));
                 int fwdResId = activityRes.getIdentifier("btn_img_home", "drawable", cordova.getActivity().getPackageName());
                 Drawable fwdIcon = activityRes.getDrawable(fwdResId);
                 if (Build.VERSION.SDK_INT >= 16)
-                    forward.setBackground(null);
+                    home.setBackground(null);
                 else
-                    forward.setBackgroundDrawable(null);
-                forward.setImageDrawable(fwdIcon);
-                forward.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                forward.setPadding(30, this.dpToPixels(10), 0, this.dpToPixels(10));
+                home.setBackgroundDrawable(null);
+                home.setImageDrawable(fwdIcon);
+                home.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                home.setPadding(30, this.dpToPixels(10), 0, this.dpToPixels(10));
                 if (Build.VERSION.SDK_INT >= 16)
-                    forward.getAdjustViewBounds();
+                    home.getAdjustViewBounds();
 
 //                forward.setOnClickListener(new View.OnClickListener() {
 //                    public void onClick(View v) {
@@ -679,7 +681,7 @@ public class InAppBrowser extends CordovaPlugin {
 //                    }
 //                });
 
-                forward.setOnClickListener(new View.OnClickListener() {
+                home.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         closeDialog();
                     }
@@ -707,6 +709,21 @@ public class InAppBrowser extends CordovaPlugin {
                         return false;
                     }
                 });
+
+                TextView textView = new TextView(cordova.getActivity());
+
+                RelativeLayout.LayoutParams texViewtLayoutParams = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+                texViewtLayoutParams.addRule(RelativeLayout.RIGHT_OF, 1);
+                texViewtLayoutParams.addRule(RelativeLayout.LEFT_OF, 5);
+                textView.setLayoutParams(texViewtLayoutParams);
+                textView.setId(Integer.valueOf(4));
+                textView.setSingleLine(true);
+                Typeface type = Typeface.createFromAsset(getAssets(),"fonts/Roboto-Regular.ttf");
+                textView.setTypeface(type);
+                textView.setPadding(240, this.dpToPixels(13), 0, this.dpToPixels(10));
+                textView.setTextColor(Color.parseColor("#FFFFFF"));
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+                textView.setText("Portal de Execução");
 
                 //Botão Voltar
                 ImageButton close = new ImageButton(cordova.getActivity());
@@ -786,7 +803,7 @@ public class InAppBrowser extends CordovaPlugin {
                     }
 
                 });
-                WebViewClient client = new InAppBrowserClient(thatWebView, edittext);
+                WebViewClient client = new InAppBrowserClient(thatWebView, textView);
                 inAppWebView.setWebViewClient(client);
                 WebSettings settings = inAppWebView.getSettings();
                 settings.setJavaScriptEnabled(true);
@@ -833,12 +850,13 @@ public class InAppBrowser extends CordovaPlugin {
 
                 // Add the back and forward buttons to our action button container layout
                 //actionButtonContainer.addView(back);
-                actionButtonContainer.addView(forward);
+                actionButtonContainer.addView(home);
 
                 // Add the views to our toolbar
                 toolbar.addView(actionButtonContainer);
 //                toolbar.addView(edittext);
                 toolbar.addView(close);
+                toolbar.addView(textView);
 
                 // Don't add the toolbar if its been disabled
                 if (getShowLocationBar()) {
@@ -934,7 +952,7 @@ public class InAppBrowser extends CordovaPlugin {
      * The webview client receives notifications about appView
      */
     public class InAppBrowserClient extends WebViewClient {
-        EditText edittext;
+        TextView textView;
         CordovaWebView webView;
 
         /**
@@ -943,9 +961,9 @@ public class InAppBrowser extends CordovaPlugin {
          * @param webView
          * @param mEditText
          */
-        public InAppBrowserClient(CordovaWebView webView, EditText mEditText) {
+        public InAppBrowserClient(CordovaWebView webView, TextView mTextView) {
             this.webView = webView;
-            this.edittext = mEditText;
+            this.textView = mTextView;
         }
 
         /**
