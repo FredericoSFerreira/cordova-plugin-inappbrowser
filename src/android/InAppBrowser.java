@@ -661,7 +661,7 @@ public class InAppBrowser extends CordovaPlugin {
                 forward.setLayoutParams(forwardLayoutParams);
                 forward.setContentDescription("Forward Button");
                 forward.setId(Integer.valueOf(3));
-                int fwdResId = activityRes.getIdentifier("btn-img-home", "drawable", cordova.getActivity().getPackageName());
+                int fwdResId = activityRes.getIdentifier("btn_img_home", "drawable", cordova.getActivity().getPackageName());
                 Drawable fwdIcon = activityRes.getDrawable(fwdResId);
                 if (Build.VERSION.SDK_INT >= 16)
                     forward.setBackground(null);
@@ -715,7 +715,7 @@ public class InAppBrowser extends CordovaPlugin {
                 close.setLayoutParams(closeLayoutParams);
                 close.setContentDescription("Close Button");
                 close.setId(Integer.valueOf(5));
-                int closeResId = activityRes.getIdentifier("btn-img-back", "drawable", cordova.getActivity().getPackageName());
+                int closeResId = activityRes.getIdentifier("btn_img_back", "drawable", cordova.getActivity().getPackageName());
                 Drawable closeIcon = activityRes.getDrawable(closeResId);
                 if (Build.VERSION.SDK_INT >= 16)
                     close.setBackground(null);

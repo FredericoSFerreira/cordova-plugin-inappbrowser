@@ -50,15 +50,15 @@
         <source-file src="src/android/InAppChromeClient.java" target-dir="src/org/apache/cordova/inappbrowser" />
 
         <!--  drawable src/android/resources -->
-        <resource-file src="src/android/res/drawable-hdpi/btn-img-home.png" target="res/drawable-hdpi/btn-img-home.png" />
-        <resource-file src="src/android/res/drawable-mdpi/btn-img-home.png" target="res/drawable-mdpi/btn-img-home.png" />
-        <resource-file src="src/android/res/drawable-xhdpi/btn-img-home.png" target="res/drawable-xhdpi/btn-img-home.png" />
-        <resource-file src="src/android/res/drawable-xxhdpi/btn-img-home.png" target="res/drawable-xxhdpi/btn-img-home.png" />
+        <resource-file src="src/android/res/drawable-hdpi/btn_img_home.png" target="res/drawable-hdpi/btn_img_home.png" />
+        <resource-file src="src/android/res/drawable-mdpi/btn_img_home.png" target="res/drawable-mdpi/btn_img_home.png" />
+        <resource-file src="src/android/res/drawable-xhdpi/btn_img_home.png" target="res/drawable-xhdpi/btn_img_home.png" />
+        <resource-file src="src/android/res/drawable-xxhdpi/btn_img_home.png" target="res/drawable-xxhdpi/btn_img_home.png" />
 
-        <resource-file src="src/android/res/drawable-hdpi/btn-img-back.png" target="res/drawable-hdpi/btn-img-back.png" />
-        <resource-file src="src/android/res/drawable-mdpi/btn-img-back.png" target="res/drawable-mdpi/btn-img-back.png" />
-        <resource-file src="src/android/res/drawable-xhdpi/btn-img-back.png" target="res/drawable-xhdpi/btn-img-back.png" />
-        <resource-file src="src/android/res/drawable-xxhdpi/btn-img-back.png" target="res/drawable-xxhdpi/btn-img-back.png" />
+        <resource-file src="src/android/res/drawable-hdpi/btn_img_back.png" target="res/drawable-hdpi/btn_img_back.png" />
+        <resource-file src="src/android/res/drawable-mdpi/btn_img_back.png" target="res/drawable-mdpi/btn_img_back.png" />
+        <resource-file src="src/android/res/drawable-xhdpi/btn_img_back.png" target="res/drawable-xhdpi/btn_img_back.png" />
+        <resource-file src="src/android/res/drawable-xxhdpi/btn_img_back.png" target="res/drawable-xxhdpi/btn_img_back.png" />
 
         <resource-file src="src/android/res/drawable-hdpi/ic_action_remove.png" target="res/drawable-hdpi/ic_action_remove.png" />
         <resource-file src="src/android/res/drawable-mdpi/ic_action_remove.png" target="res/drawable-mdpi/ic_action_remove.png" />
@@ -84,15 +84,15 @@
         <source-file src="src/amazon/InAppChromeClient.java" target-dir="src/org/apache/cordova/inappbrowser" />
 
         <!--  drawable src/android/resources -->
-        <resource-file src="src/android/res/drawable-hdpi/btn-img-home.png" target="res/drawable-hdpi/btn-img-home.png" />
-        <resource-file src="src/android/res/drawable-mdpi/btn-img-home.png" target="res/drawable-mdpi/btn-img-home.png" />
-        <resource-file src="src/android/res/drawable-xhdpi/btn-img-home.png" target="res/drawable-xhdpi/btn-img-home.png" />
-        <resource-file src="src/android/res/drawable-xxhdpi/btn-img-home.png" target="res/drawable-xxhdpi/btn-img-home.png" />
+        <resource-file src="src/android/res/drawable-hdpi/btn_img_home.png" target="res/drawable-hdpi/btn_img_home.png" />
+        <resource-file src="src/android/res/drawable-mdpi/btn_img_home.png" target="res/drawable-mdpi/btn_img_home.png" />
+        <resource-file src="src/android/res/drawable-xhdpi/btn_img_home.png" target="res/drawable-xhdpi/btn_img_home.png" />
+        <resource-file src="src/android/res/drawable-xxhdpi/btn_img_home.png" target="res/drawable-xxhdpi/btn_img_home.png" />
 
-        <resource-file src="src/android/res/drawable-hdpi/btn-img-back.png" target="res/drawable-hdpi/btn-img-back.png" />
-        <resource-file src="src/android/res/drawable-mdpi/btn-img-back.png" target="res/drawable-mdpi/btn-img-back.png" />
-        <resource-file src="src/android/res/drawable-xhdpi/btn-img-back.png" target="res/drawable-xhdpi/btn-img-back.png" />
-        <resource-file src="src/android/res/drawable-xxhdpi/btn-img-back.png" target="res/drawable-xxhdpi/btn-img-back.png" />
+        <resource-file src="src/android/res/drawable-hdpi/btn_img_back.png" target="res/drawable-hdpi/btn_img_back.png" />
+        <resource-file src="src/android/res/drawable-mdpi/btn_img_back.png" target="res/drawable-mdpi/btn_img_back.png" />
+        <resource-file src="src/android/res/drawable-xhdpi/btn_img_back.png" target="res/drawable-xhdpi/btn_img_back.png" />
+        <resource-file src="src/android/res/drawable-xxhdpi/btn_img_back.png" target="res/drawable-xxhdpi/btn_img_back.png" />
 
         <resource-file src="src/android/res/drawable-hdpi/ic_action_remove.png" target="res/drawable-hdpi/ic_action_remove.png" />
         <resource-file src="src/android/res/drawable-mdpi/ic_action_remove.png" target="res/drawable-mdpi/ic_action_remove.png" />
