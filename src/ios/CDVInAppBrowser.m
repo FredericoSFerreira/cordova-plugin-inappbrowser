@@ -588,16 +588,16 @@
     CGRect toolbarFrame = CGRectMake(0.0, toolbarY, self.view.bounds.size.width, TOOLBAR_HEIGHT);
 
     self.toolbar = [[UIToolbar alloc] initWithFrame:toolbarFrame];
-    self.toolbar.alpha = 1.000;
+    //self.toolbar.alpha = 1.000;
     self.toolbar.autoresizesSubviews = YES;
     self.toolbar.autoresizingMask = toolbarIsAtBottom ? (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin) : UIViewAutoresizingFlexibleWidth;
-    self.toolbar.barStyle = UIBarStyleBlackTranslucent;
+    self.toolbar.barStyle = UIBarStyleDefault;
     self.toolbar.clearsContextBeforeDrawing = NO;
     self.toolbar.clipsToBounds = NO;
     self.toolbar.contentMode = UIViewContentModeScaleToFill;
     self.toolbar.hidden = NO;
     self.toolbar.multipleTouchEnabled = NO;
-    self.toolbar.opaque = NO;
+    self.toolbar.opaque = YES;
     self.toolbar.userInteractionEnabled = YES;
     self.toolbar.backgroundColor = [UIColor colorWithRed:60.0 / 255.0 green:136.0 / 255.0 blue:230.0 / 255.0 alpha:1];
 
