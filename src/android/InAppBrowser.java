@@ -721,7 +721,7 @@ public class InAppBrowser extends CordovaPlugin {
                 textView.setSingleLine(true);
                 Typeface type = Typeface.create("sans-serif-medium", Typeface.NORMAL);
                 textView.setTypeface(type);
-                textView.setPadding(240, this.dpToPixels(13), 0, this.dpToPixels(10));
+                textView.setPadding(220, this.dpToPixels(13), 0, this.dpToPixels(10));
                 textView.setTextColor(Color.parseColor("#FFFFFF"));
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
                 textView.setText("Portal de Execução");
