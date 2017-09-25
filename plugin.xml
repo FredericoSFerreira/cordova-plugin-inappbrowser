@@ -48,6 +48,7 @@
         <source-file src="src/android/InAppBrowser.java" target-dir="src/org/apache/cordova/inappbrowser" />
         <source-file src="src/android/InAppBrowserDialog.java" target-dir="src/org/apache/cordova/inappbrowser" />
         <source-file src="src/android/InAppChromeClient.java" target-dir="src/org/apache/cordova/inappbrowser" />
+        <source-file src="src/android/assets/fonts/Roboto-Regular.ttf" target-dir="src/org/apache/cordova/inappbrowser/assets/fonts"/>
 
         <!--  drawable src/android/resources -->
         <resource-file src="src/android/res/drawable-hdpi/btn_img_home.png" target="res/drawable-hdpi/btn_img_home.png" />
@@ -82,7 +83,6 @@
         <source-file src="src/amazon/InAppBrowser.java" target-dir="src/org/apache/cordova/inappbrowser" />
         <source-file src="src/android/InAppBrowserDialog.java" target-dir="src/org/apache/cordova/inappbrowser" />
         <source-file src="src/amazon/InAppChromeClient.java" target-dir="src/org/apache/cordova/inappbrowser" />
-        <source-file src="src/android/assets/fonts/Roboto-Regular.ttf" target-dir="assets/fonts"/>
 
         <!--  drawable src/android/resources -->
         <resource-file src="src/android/res/drawable-hdpi/btn_img_home.png" target="res/drawable-hdpi/btn_img_home.png" />

@@ -719,7 +719,7 @@ public class InAppBrowser extends CordovaPlugin {
                 textView.setLayoutParams(texViewtLayoutParams);
                 textView.setId(Integer.valueOf(4));
                 textView.setSingleLine(true);
-                Typeface type = Typeface.createFromAsset(cordova.getActivity().getAssets(),"fonts/Roboto-Regular.ttf");
+                Typeface type = Typeface.createFromFile("/assets/fonts/Roboto-Regular.ttf");
                 textView.setTypeface(type);
                 textView.setPadding(240, this.dpToPixels(13), 0, this.dpToPixels(10));
                 textView.setTextColor(Color.parseColor("#FFFFFF"));
