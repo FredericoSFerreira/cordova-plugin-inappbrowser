@@ -599,7 +599,7 @@
     self.toolbar.multipleTouchEnabled = NO;
     self.toolbar.opaque = YES;
     self.toolbar.userInteractionEnabled = YES;
-    self.toolbar.backgroundColor = [UIColor colorWithRed:60.0 / 255.0 green:136.0 / 255.0 blue:230.0 / 255.0 alpha:1];
+    self.toolbar.backgroundColor = [UIColor colorWithRed:0.00 green:0.40 blue:0.70 alpha:1.0]
 
     CGFloat labelInset = 5.0;
     float locationBarY = toolbarIsAtBottom ? self.view.bounds.size.height - FOOTER_HEIGHT : self.view.bounds.size.height - LOCATIONBAR_HEIGHT;
@@ -647,7 +647,7 @@
 
     self.view.backgroundColor = [UIColor grayColor];
     [self.view addSubview:self.toolbar];
-    [self.view addSubview:self.addressLabel];
+    //[self.view addSubview:self.addressLabel];
     [self.view addSubview:self.spinner];
 }
 
