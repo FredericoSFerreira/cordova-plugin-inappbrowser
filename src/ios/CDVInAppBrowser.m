@@ -576,15 +576,19 @@
     self.spinner.userInteractionEnabled = NO;
     [self.spinner stopAnimating];
     
-    UIImage *image = [[UIImage imageNamed:@"close@2x.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
+    UIImage *image = [[UIImage imageNamed:@"BotaoHome"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.closeButton = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(close)];
+
     self.closeButton.enabled = YES;
     
-    UIBarButtonItem* flexibleSpaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    NSString* portalExecucaoString = NSLocalizedString(@"Portal de Execução", nil);
+    UIBarButtonItem* portaoExecucaoTexto  = [[UIBarButtonItem alloc] initWithTitle:portalExecucaoString style:UIBarButtonItemStylePlain target:nil action:nil];
     
-    UIBarButtonItem* fixedSpaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    fixedSpaceButton.width = 20;
+    portaoExecucaoTexto.tintColor = [UIColor whiteColor];
+
+    NSDictionary *barButtonAppearanceDict = @{NSFontAttributeName : [UIFont fontWithName:@"Roboto-Bold" size:15.0], NSForegroundColorAttributeName: [UIColor whiteColor]};
+    
+    [[UIBarButtonItem appearance] setTitleTextAttributes:barButtonAppearanceDict forState:UIControlStateNormal];
     
     float toolbarY = toolbarIsAtBottom ? self.view.bounds.size.height - TOOLBAR_HEIGHT : 0.0;
     CGRect toolbarFrame = CGRectMake(0.0, toolbarY, self.view.bounds.size.width, TOOLBAR_HEIGHT);
@@ -604,7 +608,7 @@
     self.toolbar.barTintColor = [UIColor colorWithRed:0.00 green:0.40 blue:0.80 alpha:1.0];
     self.toolbar.tintColor = [UIColor colorWithRed:0.00 green:0.40 blue:0.80 alpha:1.0];
     self.toolbar.backgroundColor = [UIColor colorWithRed:0.00 green:0.40 blue:0.80 alpha:1.0];
-                                    
+    
     
     CGFloat labelInset = 5.0;
     float locationBarY = toolbarIsAtBottom ? self.view.bounds.size.height - FOOTER_HEIGHT : self.view.bounds.size.height - LOCATIONBAR_HEIGHT;
@@ -639,15 +643,18 @@
     
     NSString* frontArrowString = NSLocalizedString(@"►", nil); // create arrow from Unicode char
     self.forwardButton = [[UIBarButtonItem alloc] initWithTitle:frontArrowString style:UIBarButtonItemStylePlain target:self action:@selector(goForward:)];
-    self.forwardButton.enabled = YES;
+    self.forwardButton.enabled = NO;
     self.forwardButton.imageInsets = UIEdgeInsetsZero;
     
-    NSString* backArrowString = NSLocalizedString(@"◄", nil); // create arrow from Unicode char
-    self.backButton = [[UIBarButtonItem alloc] initWithTitle:backArrowString style:UIBarButtonItemStylePlain target:self action:@selector(goBack:)];
+    UIImage *imagemVoltar = [[UIImage imageNamed:@"BotaoVoltar"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    self.backButton = [[UIBarButtonItem alloc] initWithImage:imagemVoltar style:UIBarButtonItemStylePlain target:self action:@selector(goBack:)];
     self.backButton.enabled = YES;
     self.backButton.imageInsets = UIEdgeInsetsZero;
     
-    [self.toolbar setItems:@[self.closeButton, flexibleSpaceButton, self.backButton, fixedSpaceButton, self.forwardButton]];
+    UIBarButtonItem* flexibleSpaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    [self.toolbar setItems:@[self.closeButton, flexibleSpaceButton,portaoExecucaoTexto ,flexibleSpaceButton,self.backButton]];
     
     //    self.view.backgroundColor = [UIColor grayColor];
     [self.view addSubview:self.toolbar];
@@ -846,6 +853,7 @@
 
 - (void)goBack:(id)sender
 {
+    printf("CHAMANDO VOLTAR");
     [self.webView goBack];
 }
 
@@ -889,7 +897,7 @@
     // loading url, start spinner, update back/forward
     
     self.addressLabel.text = NSLocalizedString(@"Loading...", nil);
-    self.backButton.enabled = theWebView.canGoBack;
+    self.backButton.enabled = YES;
     self.forwardButton.enabled = theWebView.canGoForward;
     
     [self.spinner startAnimating];
@@ -904,6 +912,21 @@
     if (isTopLevelNavigation) {
         self.currentURL = request.URL;
     }
+    NSString *str = [[request URL] absoluteString];
+    printf("%s\n", [str UTF8String]);
+    
+    if ([str hasSuffix:@"/#/app/home"] || [str hasSuffix:@"/#/login/"] || [str hasSuffix:@"/#/unico/"]) {
+        printf("N TEM\n\n");
+        [self.backButton setEnabled:NO];
+        [self.backButton setImage:nil];
+    } else {
+        UIImage *imagemVoltar = [[UIImage imageNamed:@"BotaoVoltar"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        [self.backButton setEnabled:YES];
+        [self.backButton setImage:imagemVoltar];
+        printf("TEM\n\n");
+        
+    }
+    
     return [self.navigationDelegate webView:theWebView shouldStartLoadWithRequest:request navigationType:navigationType];
 }
 
@@ -912,7 +935,7 @@
     // update url, stop spinner, update back/forward
     
     self.addressLabel.text = [self.currentURL absoluteString];
-    self.backButton.enabled = theWebView.canGoBack;
+    self.backButton.enabled = YES;
     self.forwardButton.enabled = theWebView.canGoForward;
     
     [self.spinner stopAnimating];
@@ -941,7 +964,7 @@
     // log fail message, stop spinner, update back/forward
     NSLog(@"webView:didFailLoadWithError - %ld: %@", (long)error.code, [error localizedDescription]);
     
-    self.backButton.enabled = theWebView.canGoBack;
+    self.backButton.enabled = YES;
     self.forwardButton.enabled = theWebView.canGoForward;
     [self.spinner stopAnimating];
     
