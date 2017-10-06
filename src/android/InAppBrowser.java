@@ -112,6 +112,7 @@ public class InAppBrowser extends CordovaPlugin {
     private ValueCallback<Uri[]> mUploadCallbackLollipop;
     private final static int FILECHOOSER_REQUESTCODE = 1;
     private final static int FILECHOOSER_REQUESTCODE_LOLLIPOP = 2;
+    private ImageButton close;
 
     /**
      * Executes the request and returns PluginResult.
@@ -616,6 +617,7 @@ public class InAppBrowser extends CordovaPlugin {
 
                 // Toolbar layout
                 RelativeLayout toolbar = new RelativeLayout(cordova.getActivity());
+
                 //Please, no more black!
                 int colorCode = Color.parseColor("#0066B3") ;
                 toolbar.setBackgroundColor(colorCode);
@@ -669,7 +671,7 @@ public class InAppBrowser extends CordovaPlugin {
                 if (Build.VERSION.SDK_INT >= 16)
                     home.setBackground(null);
                 else
-                home.setBackgroundDrawable(null);
+                    home.setBackgroundDrawable(null);
                 home.setImageDrawable(fwdIcon);
                 home.setScaleType(ImageView.ScaleType.FIT_CENTER);
                 home.setPadding(30, this.dpToPixels(10), 0, this.dpToPixels(10));
@@ -727,7 +729,7 @@ public class InAppBrowser extends CordovaPlugin {
                 textView.setText("Portal de Execução");
 
                 //Botão Voltar
-                ImageButton close = new ImageButton(cordova.getActivity());
+                close = new ImageButton(cordova.getActivity());
                 RelativeLayout.LayoutParams closeLayoutParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
                 closeLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                 close.setLayoutParams(closeLayoutParams);
@@ -761,6 +763,7 @@ public class InAppBrowser extends CordovaPlugin {
                 inAppWebView = new WebView(cordova.getActivity());
                 inAppWebView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
                 inAppWebView.setId(Integer.valueOf(6));
+                inAppWebView.addJavascriptInterface(new PortalJavascript(this), "portalmobile");
                 // File Chooser Implemented ChromeClient
                 inAppWebView.setWebChromeClient(new InAppChromeClient(thatWebView) {
                     // For Android 5.0+
@@ -855,7 +858,7 @@ public class InAppBrowser extends CordovaPlugin {
 
                 // Add the views to our toolbar
                 toolbar.addView(actionButtonContainer);
-//                toolbar.addView(edittext);
+                //toolbar.addView(edittext);
                 toolbar.addView(close);
                 toolbar.addView(textView);
 
@@ -1041,6 +1044,13 @@ public class InAppBrowser extends CordovaPlugin {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
+
+            if(url.toLowerCase().endsWith("home")) {
+                close.setVisibility(View.INVISIBLE);
+            } else {
+                close.setVisibility(View.VISIBLE);
+            }
+
             String newloc = "";
             if (url.startsWith("http:") || url.startsWith("https:") || url.startsWith("file:")) {
                 newloc = url;
